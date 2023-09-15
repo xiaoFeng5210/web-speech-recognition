@@ -5,15 +5,18 @@ const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const mode = 'development';
 module.exports = {
-  mode: 'development',
+  mode,
   entry: './src/index.js', // 入口文件
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
       template: 'index.html'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: "main.css",
+    })
   ],
   output: {
     filename: 'bundle.js', // 输出文件名
@@ -29,16 +32,34 @@ module.exports = {
     open: true
   },
   devtool: 'source-map',
-  // optimization: {
-  //   runtimeChunk: 'single',
-  // },
+  optimization: {
+    // runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+          vendor: {
+              priority: 10,
+              minSize: 0,
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all'
+          },
+          common: {
+              priority: 9,
+              minSize: 0,
+              minChunks: 2,
+              chunks: 'all',
+              name: 'common'
+          }
+      }
+  },
+  },
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
         use: [
-          mode === 'production' ? MiniCssExtractPlugin.loader :
-            'css-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           'sass-loader'
         ]
       },
