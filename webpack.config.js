@@ -10,8 +10,8 @@ module.exports = {
   entry: './src/index.js', // 入口文件
   plugins: [
     new HtmlWebpackPlugin({
-     title: 'Development',
-     template: 'index.html'
+      title: 'Development',
+      template: 'index.html'
     }),
     new MiniCssExtractPlugin()
   ],
@@ -20,7 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'), // 输出目录
     clean: true, // 清理dist文件夹
   },
-  
+
   devServer: {
     static: './dist',
     port: 9000,
@@ -32,4 +32,21 @@ module.exports = {
   // optimization: {
   //   runtimeChunk: 'single',
   // },
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          mode === 'production' ? MiniCssExtractPlugin.loader :
+            'css-loader',
+          'sass-loader'
+        ]
+      },
+    ],
+  },
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src')
+    }
+  },
 };
