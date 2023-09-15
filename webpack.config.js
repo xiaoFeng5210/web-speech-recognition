@@ -3,6 +3,7 @@
 const path = require('path');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: 'development',
@@ -12,6 +13,7 @@ module.exports = {
      title: 'Development',
      template: 'index.html'
     }),
+    new MiniCssExtractPlugin()
   ],
   output: {
     filename: 'bundle.js', // 输出文件名
