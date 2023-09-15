@@ -1,1 +1,4 @@
-import './styles/common.scss'
+import './styles/index.scss'
+
+
+console.log('hello world')
