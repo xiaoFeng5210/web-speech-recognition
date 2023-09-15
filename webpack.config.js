@@ -11,7 +11,7 @@ module.exports = {
   entry: './src/index.js', // 入口文件
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Development',
+      title: '语音识别',
       template: 'index.html'
     }),
     new MiniCssExtractPlugin({
