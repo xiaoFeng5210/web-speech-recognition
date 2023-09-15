@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,19 @@
   <link rel="stylesheet" href="https://unpkg.com/lu2/theme/edge/css/common/form.css">
   <link rel="stylesheet" href="https://unpkg.com/lu2/theme/edge/css/common/ui.css">
 </head>
+
 <body>
   <script type="module" src="https://unpkg.com/lu2/theme/edge/js/common/all.js"></script>
   <script type="module" src="https://unpkg.com/lu2/theme/edge/js/common/safari-polyfill.js"></script>
   <div class="main">
-    
+    <h1 class="title">语音识别demo</h1>
+    <footer>
+      <!-- <button type="success" class="ui-button" id="start_record">开始录音</button> -->
+      <button type="error" class="ui-button" id="stop_button" loading>停止识别</button>
+      <button type="primary" class="ui-button" id="start_button" loading>开始识别语音</button>
+    </footer>
+
   </div>
 </body>
+
 </html>
