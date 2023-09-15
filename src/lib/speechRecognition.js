@@ -26,6 +26,7 @@ class SpeechRecognitionLocale {
       this.speechRecognition.addEventListener('result', (e) => {
         const transcript = e.results[0][0].transcript;
         console.log('识别结果：', transcript);
+        this.render(transcript)
       })
 
       this.speechRecognition.onerror = (event) => {
@@ -35,6 +36,13 @@ class SpeechRecognitionLocale {
       this.speechRecognition.onend = () => {
         console.log('语音识别结束');
       };
+    }
+  }
+
+  render(text) {
+    const textBox = document.getElementById('text_box')
+    if (textBox) {
+      textBox.innerText = text ? text : ''
     }
   }
 
@@ -51,7 +59,12 @@ class SpeechRecognitionLocale {
     if ('stop' in this.speechRecognition) {
       console.log('停止识别')
       this.speechRecognition.stop()
+      this.clearText()
     }
+  }
+
+  clearText() {
+    this.render('')
   }
 
 }
