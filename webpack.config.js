@@ -22,6 +22,7 @@ module.exports = {
     filename: 'bundle.js', // 输出文件名
     path: path.resolve(__dirname, 'dist'), // 输出目录
     clean: true, // 清理dist文件夹
+    // publicPath: ASSET_PATH,
   },
 
   devServer: {
@@ -34,27 +35,41 @@ module.exports = {
   devtool: 'source-map',
   optimization: {
     // runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-          vendor: {
-              priority: 10,
-              minSize: 0,
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all'
-          },
-          common: {
-              priority: 9,
-              minSize: 0,
-              minChunks: 2,
-              chunks: 'all',
-              name: 'common'
-          }
-      }
-  },
+    // splitChunks: {
+    //   cacheGroups: {
+    //       vendor: {
+    //           priority: 10,
+    //           minSize: 0,
+    //           test: /[\\/]node_modules[\\/]/,
+    //           name: 'vendors',
+    //           chunks: 'all'
+    //       },
+    //       common: {
+    //           priority: 9,
+    //           minSize: 0,
+    //           minChunks: 2,
+    //           chunks: 'all',
+    //           name: 'common'
+    //       }
+    //   }
+  // },
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          publicPath: 'assets',
+        },
+      },
+      {
+        test: /\.(mp3)$/i,
+        loader: 'file-loader',
+        options: {
+          publicPath: '',
+        },
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [
